@@ -67,7 +67,7 @@
                 <li
                     class="m-[10px] hover:bg-blue-700 bg-blue-600 h-[40px] w-[80px] rounded flex items-center justify-center hover:text-gray-300 text-white"
                 >
-                    <a href="/">SIGN IN</a>                    
+                    <a href="/sginIn">SIGN IN</a>                    
                 </li>
                 <li
                     class="m-[10px] hover:text-blue-600"
