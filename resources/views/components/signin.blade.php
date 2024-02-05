@@ -17,12 +17,24 @@
             />
         </div>
         <div class='w-[40%] h-[100%] flex flex-col justify-around items-center' id='reightContent'>
+            @if (session()->has('message'))
+                <x-alert color='green'>
+                    {{ session('message') }}
+                </x-alert>
+            @endif
+            @if (session()->has('Field'))
+                <x-alert color='red'>
+                    {{ session('Field') }}
+                </x-alert>
+            @endif
             <h1
                 class='text-[30px]'
             >Welcome,</h1>
             <form 
-                onSubmit={submit}
+                method="POST"
+                action="{{ route('signin_page') }}"
                 class='w-[100%] h-[40%] flex flex-wrap justify-around'>
+                @csrf
                 <label class='p-[0px] m-[0px] w-[80%]'>
                     <p>Email Address</p>
                     <input 
@@ -31,6 +43,11 @@
                         placeholder='example@gmail.com'
                         name="email"
                     />
+                    <p class="text-red-500">
+                        @error('email')
+                            {{$message}}    
+                        @enderror
+                    </p>
                 </label>
                 <label class='p-[0px] m-[0px] w-[80%]'>
                     <p>Password</p>
@@ -39,6 +56,11 @@
                         class='w-[100%] rounded'
                         name="password"
                     />
+                    <p class="text-red-500">
+                        @error('password')
+                            {{$message}}    
+                        @enderror
+                    </p>
                 </label>
                 <label class='p-[0px] m-[0px] w-[80%]'>
                     <a 
@@ -46,7 +68,6 @@
                     >Forgot password?</a>
                     <input
                         type='submit'
-                        disabled={processing}
                         value='Sign In'
                         class='w-[100%] rounded bg-blue-500 hover:bg-blue-600 h-[43px] cursor-pointer text-white shadow-md'
                     />
