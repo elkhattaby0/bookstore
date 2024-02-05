@@ -3,12 +3,12 @@
 
     {{-- Section One --}}
     <section
-        class="w-[100%] flex justify-center items-center"
+        class="w-[100%] flex flex-col justify-center items-center"
     >
         <div
-            class="flex w-[90%] "
+            class="flex w-[90%] h-[85vh]"
         >
-            <section class="mt-[100px] h-[50vh] w-[50%] flex flex-col justify-between">
+            <section class="mt-[100px] h-[60vh] w-[50%] flex flex-col justify-between">
                 <h1 
                     class="text-[40px] font-bold leading-10 w-[88%]"
                 >
@@ -22,21 +22,74 @@
                 </p>
 
                 <div
-                    class="shadow-md w-[70%] h-[50px] rounded-2xl px-[8px] flex justify-between items-center"
+                    class="shadow-md w-[80%] h-[70px] rounded-2xl px-[8px] flex justify-between items-center"
                 >
-                    <input type="text" class="w-[75%] h-[42px] rounded-2xl border-none"
+                    <input type="text" class="w-[75%] h-[55px] rounded-2xl border-none"
                         placeholder="Find your book here..."
                     />
                     <button
-                        class="bg-blue-600 hover:bg-blue-700 font-bold h-[42px] text-white w-[90px] rounded-2xl"
+                        class="bg-blue-600 hover:bg-blue-700 font-bold h-[55px] text-white w-[90px] rounded-2xl"
                     >
                         Search
                     </button>
                 </div>
             </section>
-            <section class="border- w-[50%]"></section>
+            <section class="border- w-[50%] flex justify-between items-center ">
+                <img 
+                    src="https://booksondemand.ma/cdn/shop/products/71951W96oWL.jpg?v=1631701478&width=823"
+                    class="w-[50%] rounded shadow-2xl "
+                />
+                <div
+                    class="text-[30px] w-[50%] flex flex-col justify-center items-center text-gray-500 font-bold"
+                >
+                    <p class="leading-9">
+                        <b class="text-blue-600 text-[35px]">165K+</b><br/>
+                        Books We Have
+                    </p>
+                    <img 
+                        src="https://booksondemand.ma/cdn/shop/products/RichDad_PoorDadbyRobertT.Kiyosaki-books.jpg?v=1609441318&width=823"
+                        class="w-[90%] rounded shadow-2xl"
+                    />
+                </div>
+            </section>
+        </div>
+
+        <div
+            class="w-[90%] mt-[50px] flex justify-center cursor-pointer"
+        >
+            @foreach ($sectionTwo as $i)
+                <div
+                    class="bg-green-100 hover:bg-green-200 m-[8px] h-[190px] w-[400px] rounded-xl font-bold flex items-center justify-center flex-col text-[25px]"
+                >
+                    <img src={{ $i->img }} class="w-[45px] h-[45px]" />
+                    <h1>{{ $i->nbr }}</h1>
+                    <p class="text-gray-500">{{ $i->txt }}</p>
+                </div>
+            @endforeach
         </div>
         
+
+        <div
+            class="w-[90%] mt-[80px] flex flex-col justify-center items-center"
+        >
+            <h1
+                class="font-bold text-[40px] pl-[20px] pb-[20px]"
+            >Shop by category</h1>
+            <div 
+                class="w-[100%] flex justify-center flex-wrap"
+            >
+                @foreach ($category as $i)
+                    <div
+                        class="hover:bg-{{ $i->bgcolor }}-500 cursor-pointer bg-{{ $i->bgcolor }}-600 rounded-xl text-white m-[8px] h-[190px] w-[380px] text-[35px] font-bold flex items-center justify-center"
+                    >
+                        <h1>{{ $i->name }}</h1>
+                    </div>
+                @endforeach
+            </div>
+            <a
+                class="text-blue-400 font-bold text-[20px] bg-gray-100 rounded shadow-xl flex items-center justify-center text-center h-[50px] w-[300px] cursor-pointer"
+            >View all categories</a>
+        </div>
     </section>
 
 @endsection
