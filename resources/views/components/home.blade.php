@@ -171,5 +171,6 @@
             >View all books</a>
         </div>
     </section>
+    <x-footer />
 
 @endsection
