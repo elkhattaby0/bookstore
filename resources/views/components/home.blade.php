@@ -16,7 +16,7 @@
                 </h1>
 
                 <p
-                    class="text-[20px] text-gray-500 leading-7"
+                    class="text-[20px] text-gray-500 leading-7 w-[91%]"
                 >
                 Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eligendi, saepe, quia minus repellendus veniam aperiam recusandae est aspernatur omnis tempore quo quidem? Eaque cum sunt dolorum ipsum hic dolor natus.
                 </p>
@@ -40,7 +40,7 @@
                     class="w-[50%] rounded-lg shadow-2xl "
                 />
                 <div
-                    class="text-[30px] w-[50%] flex flex-col justify-center items-center text-gray-500 font-bold"
+                    class="text-[25px] w-[50%] flex flex-col justify-center items-center text-gray-500 font-bold"
                 >
                     <p class="leading-9">
                         <b class="text-blue-600 text-[35px]">165K+</b><br/>
