@@ -109,7 +109,7 @@
                                 <img src={{ $i->img }} class="w-[200px] rounded-lg shadow-md" />
                                 <h1 class="font-bold text-[20px]">{{ $i->title }}</h1>
                                 <p class="text-gray-500">{{ $i->author }}</p>
-                                <h3 class="font-bold text-[18px] text-blue-600">${{ $i->price }}</h3>
+                                <h3 class="font-bold text-[18px] text-blue-600">${{ number_format($i->price, 2) }}</h3>
                             </div>
                         @endforeach
                     </section>
@@ -117,4 +117,5 @@
             </div>
         </section>
     </div>
+    <x-footer />
 @endsection
