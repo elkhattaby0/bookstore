@@ -37,7 +37,7 @@
             <section class="border- w-[50%] flex justify-between items-center ">
                 <img 
                     src="https://booksondemand.ma/cdn/shop/products/71951W96oWL.jpg?v=1631701478&width=823"
-                    class="w-[50%] rounded shadow-2xl "
+                    class="w-[50%] rounded-lg shadow-2xl "
                 />
                 <div
                     class="text-[30px] w-[50%] flex flex-col justify-center items-center text-gray-500 font-bold"
@@ -48,7 +48,7 @@
                     </p>
                     <img 
                         src="https://booksondemand.ma/cdn/shop/products/RichDad_PoorDadbyRobertT.Kiyosaki-books.jpg?v=1609441318&width=823"
-                        class="w-[90%] rounded shadow-2xl"
+                        class="w-[90%] rounded-lg shadow-2xl"
                     />
                 </div>
             </section>
@@ -89,6 +89,86 @@
             <a
                 class="text-blue-400 font-bold text-[20px] bg-gray-100 rounded shadow-xl flex items-center justify-center text-center h-[50px] w-[300px] cursor-pointer"
             >View all categories</a>
+        </div>
+
+        <div
+            class="w-[90%] mt-[150px] flex justify-around items-center bg-green-200 h-[50vh] rounded-xl"
+        >
+            <section class="w-[50%]">
+                <img 
+                    src="https://img.freepik.com/free-vector/stack-money-gold-coins-3d-cartoon-style-icon-coins-with-dollar-sign-wad-cash-currency-flat-vector-illustration-wealth-investment-success-savings-economy-profit-concept_74855-26108.jpg?w=740&t=st=1707206438~exp=1707207038~hmac=efcd763ba1df1c094a5032ed5633c4de3a59d1e170f600669fc5f67880377ff6"
+                    class="w-40% mix-blend-multiply	"
+                />
+            </section>
+            <section class="w-[50%] h-[75%] flex flex-col justify-around">
+                <h1
+                    class="font-bold text-[40px]"
+                >
+                20% OFF Finance book
+                </h1>
+                <p
+                    class="text-gray-500 text-[30px] leading-9"
+                >
+                    Stay on top of your finance.<br/>
+                    Don't leave that up to others.
+                </p>
+                <button
+                    class="bg-blue-600 hover:bg-blue-500 text-white font-bold w-[250px] h-[45px] rounded-xl shadow-md"
+                >
+                    Get the offer
+                </button>
+            </section>
+        </div>
+
+        <div 
+            class="w-[90%] mt-[150px] flex flex-col justify-center items-center"
+        >
+            <h1
+                class="font-bold text-[40px] pl-[20px] pb-[20px]"
+            >
+                Trending books of the year
+            </h1>
+            <section
+                class="w-[100%] flex flex-wrap justify-center"
+            >
+                @foreach ($books as $i)
+                    <div 
+                        class="m-[8px] text-center hover:border-2 p-[8px] rounded-lg cursor-pointer"
+                    >
+                        <img src={{ $i->img }} class="w-[250px] rounded-lg shadow-md" />
+                        <h1 class="font-bold text-[20px]">{{ $i->title }}</h1>
+                        <p class="text-gray-500">{{ $i->author }}</p>
+                        <h3 class="font-bold text-[18px] text-blue-600">${{ $i->price }}</h3>
+                    </div>
+                @endforeach
+            </section>
+        </div>
+
+        <div 
+            class="w-[90%] mt-[150px] flex flex-col justify-center items-center"
+        >
+            <h1
+                class="font-bold text-[40px] pl-[20px] pb-[20px]"
+            >
+                Pupular books 
+            </h1>
+            <section
+                class="w-[100%] flex flex-wrap justify-center"
+            >
+                @foreach ($books as $i)
+                    <div 
+                        class="m-[8px] text-center hover:border-2 p-[8px] rounded-lg cursor-pointer"
+                    >
+                        <img src={{ $i->img }} class="w-[250px] rounded-lg shadow-md" />
+                        <h1 class="font-bold text-[20px]">{{ $i->title }}</h1>
+                        <p class="text-gray-500">{{ $i->author }}</p>
+                        <h3 class="font-bold text-[18px] text-blue-600">${{ $i->price }}</h3>
+                    </div>
+                @endforeach
+            </section>
+            <a
+                class="text-blue-400 font-bold text-[20px] bg-gray-100 rounded shadow-xl flex items-center justify-center text-center h-[50px] w-[300px] cursor-pointer"
+            >View all books</a>
         </div>
     </section>
 
