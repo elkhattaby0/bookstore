@@ -42,4 +42,6 @@ Route::name('signin_page')
     Route::post('/', 'login');
 });
 
+Route::get('/logout', [UserController::class, 'logout'])
+->name('dashborad.logout');
 

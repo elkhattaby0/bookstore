@@ -80,7 +80,13 @@
                     <li
                         class="m-[10px] hover:text-blue-600"
                     >
-                        <a >Profile</a>                    
+                        <a href="/logout">
+                            {{-- {{ Auth::user()->email }} --}}
+                            <img
+                                src="https://cdn-icons-png.flaticon.com/512/149/149071.png"
+                                class="w-[35px] h-[35px]"
+                            />
+                        </a>                    
                     </li>
                 @endauth
                 
