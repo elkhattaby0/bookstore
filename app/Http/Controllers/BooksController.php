@@ -29,4 +29,16 @@ class BooksController extends Controller
 
         return view('components.book', compact('books'));
     }
+
+
+
+    public function details(Request $request)  {
+
+        $books = [
+            (object)["id" => 16, 'title' => 'Book_16', 'author' => 'Author_8', 'price' => 16.00, 'img' => 'https://booksondemand.ma/cdn/shop/products/RichDad_PoorDadbyRobertT.Kiyosaki-books.jpg?v=1609441318&width=823']
+        ];
+
+        $count = 1;
+        return view('components.details', compact('books', 'count'));
+    }
 }

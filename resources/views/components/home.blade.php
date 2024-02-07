@@ -132,14 +132,15 @@
                 class="w-[100%] flex flex-wrap justify-center"
             >
                 @foreach ($books as $i)
-                    <div 
+                    <a 
+                        href="{{route('details_page')}}"
                         class="m-[8px] text-center hover:border-2 p-[8px] rounded-lg cursor-pointer"
                     >
                         <img src={{ $i->img }} class="w-[250px] rounded-lg shadow-md" />
                         <h1 class="font-bold text-[20px]">{{ $i->title }}</h1>
                         <p class="text-gray-500">{{ $i->author }}</p>
                         <h3 class="font-bold text-[18px] text-blue-600">${{ number_format($i->price, 2) }}</h3>
-                    </div>
+                    </a>
                 @endforeach
             </section>
         </div>
@@ -156,14 +157,15 @@
                 class="w-[100%] flex flex-wrap justify-center"
             >
                 @foreach ($books as $i)
-                    <div 
+                    <a
+                        href="{{route('details_page')}}"
                         class="m-[8px] text-center hover:border-2 p-[8px] rounded-lg cursor-pointer"
                     >
                         <img src={{ $i->img }} class="w-[250px] rounded-lg shadow-md" />
                         <h1 class="font-bold text-[20px]">{{ $i->title }}</h1>
                         <p class="text-gray-500">{{ $i->author }}</p>
                         <h3 class="font-bold text-[18px] text-blue-600">${{ number_format($i->price, 2) }}</h3>
-                    </div>
+                    </a>
                 @endforeach
             </section>
             <a

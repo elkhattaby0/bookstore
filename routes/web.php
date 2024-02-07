@@ -17,15 +17,29 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-Route::get('/', [HomeController::class, 'index'])->name('home_page');
-Route::get('/books', [BooksController::class, 'index'])->name('books_page');
+Route::get('/', [HomeController::class, 'index'])
+->name('home_page');
+Route::get('/books', [BooksController::class, 'index'])
+->name('books_page');
 
-Route::get('/sginUp', [UserController::class, 'create'])
-->name('signup_page');
-Route::post('/sginUp', [UserController::class, 'store'])
-->name('signup_page');
+Route::get('book_nbr', [BooksController::class, 'details'])
+->name('details_page');
 
-Route::get('/sginIn', [UserController::class, 'show'])
-->name('signin_page');
-Route::post('/sginIn', [UserController::class, 'login'])
-->name('signin_page');
+
+Route::name('signup_page')
+->controller(UserController::class)
+->prefix('sginUp')
+->group(function () {
+    Route::get('/', 'create');
+    Route::post('/', 'store');
+});
+
+Route::name('signin_page')
+->controller(UserController::class)
+->prefix('sginIn')
+->group(function () {
+    Route::get('/', 'show');
+    Route::post('/', 'login');
+});
+
+

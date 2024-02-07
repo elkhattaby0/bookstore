@@ -64,16 +64,26 @@
                         </svg>
                     </a>
                 </li>
-                <li
-                    class="m-[10px] hover:bg-blue-700 bg-blue-600 h-[40px] w-[80px] rounded flex items-center justify-center hover:text-gray-300 text-white"
-                >
-                    <a href="{{ route('signin_page') }}">SIGN IN</a>                    
-                </li>
-                <li
-                    class="m-[10px] hover:text-blue-600"
-                >
-                    <a href="{{ route('signup_page') }}">SIGN UP</a>                    
-                </li>
+                @guest
+                    <li
+                        class="m-[10px] hover:bg-blue-700 bg-blue-600 h-[40px] w-[80px] rounded flex items-center justify-center hover:text-gray-300 text-white"
+                    >
+                        <a href="{{ route('signin_page') }}">SIGN IN</a>                    
+                    </li>
+                    <li
+                        class="m-[10px] hover:text-blue-600"
+                    >
+                        <a href="{{ route('signup_page') }}">SIGN UP</a>                    
+                    </li>
+                @endguest
+                @auth
+                    <li
+                        class="m-[10px] hover:text-blue-600"
+                    >
+                        <a >Profile</a>                    
+                    </li>
+                @endauth
+                
             </ul>
         </nav>
     </header>
