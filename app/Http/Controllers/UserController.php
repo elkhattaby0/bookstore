@@ -14,12 +14,12 @@ class UserController extends Controller
     }
 
     public function store(Request $request) {
-        $fname = $request->fname; 
-        $lname = $request->lname; 
-        $dateBirth = $request->dateBirth; 
-        $gender = $request->gender; 
-        $email = $request->email; 
-        $password = $request->password; 
+        $fname = $request->input('fname'); 
+        $lname = $request->input('lname'); 
+        $dateBirth = $request->input('dateBirth'); 
+        $gender = $request->input('gender'); 
+        $email = $request->input('email'); 
+        $password = $request->input('password'); 
         
         $request->validate([
             'fname' => 'required|min:1',
@@ -48,8 +48,8 @@ class UserController extends Controller
     }
 
     public function login(Request $request) {
-        $email = $request->email; 
-        $password = $request->password;
+        $email = $request->input('email'); 
+        $password = $request->input('password');
 
         $begin = [
             "email" => $email,

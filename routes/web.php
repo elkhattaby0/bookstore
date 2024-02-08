@@ -45,3 +45,8 @@ Route::name('signin_page')
 Route::get('/logout', [UserController::class, 'logout'])
 ->name('dashborad.logout');
 
+Route::get('/dashboard', function () {
+    return view('components.user-dash');
+})
+->middleware('auth')
+->name('user-dash');

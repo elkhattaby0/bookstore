@@ -71,7 +71,7 @@
                         <a href="{{ route('signin_page') }}">SIGN IN</a>                    
                     </li>
                     <li
-                        class="m-[10px] hover:text-blue-600"
+                        class="m-[10px] hover:textzakaria@gmail.com"
                     >
                         <a href="{{ route('signup_page') }}">SIGN UP</a>                    
                     </li>
@@ -80,11 +80,11 @@
                     <li
                         class="m-[10px] hover:text-blue-600"
                     >
-                        <a href="/logout">
+                        <a href="{{ route('user-dash') }}">
                             {{-- {{ Auth::user()->email }} --}}
                             <img
                                 src="https://cdn-icons-png.flaticon.com/512/149/149071.png"
-                                class="w-[35px] h-[35px]"
+                                class="w-[35px] h-[35px] hover:border-2 hover:border-blue-600 rounded-2xl"
                             />
                         </a>                    
                     </li>
