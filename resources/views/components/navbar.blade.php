@@ -71,7 +71,7 @@
                         <a href="{{ route('signin_page') }}">SIGN IN</a>                    
                     </li>
                     <li
-                        class="m-[10px] hover:textzakaria@gmail.com"
+                        class="m-[10px] "
                     >
                         <a href="{{ route('signup_page') }}">SIGN UP</a>                    
                     </li>

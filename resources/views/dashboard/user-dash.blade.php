@@ -29,7 +29,7 @@
                         </svg>                          
                         <p class="text-[20px] ml-[10px]">Home</p>
                     </a>
-                    <a href="#"  class="flex items-center bg-black rounded-2xl w-[100%] pl-[25px] cursor-pointer my-[1px]">
+                    <a href="#"  class="flex items-center bg-black hover:bg-gray-900 rounded-2xl w-[100%] pl-[25px] cursor-pointer my-[1px]">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 h-[60px]">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 21v-7.5a.75.75 0 0 1 .75-.75h3a.75.75 0 0 1 .75.75V21m-4.5 0H2.36m11.14 0H18m0 0h3.64m-1.39 0V9.349M3.75 21V9.349m0 0a3.001 3.001 0 0 0 3.75-.615A2.993 2.993 0 0 0 9.75 9.75c.896 0 1.7-.393 2.25-1.016a2.993 2.993 0 0 0 2.25 1.016c.896 0 1.7-.393 2.25-1.015a3.001 3.001 0 0 0 3.75.614m-16.5 0a3.004 3.004 0 0 1-.621-4.72l1.189-1.19A1.5 1.5 0 0 1 5.378 3h13.243a1.5 1.5 0 0 1 1.06.44l1.19 1.189a3 3 0 0 1-.621 4.72M6.75 18h3.75a.75.75 0 0 0 .75-.75V13.5a.75.75 0 0 0-.75-.75H6.75a.75.75 0 0 0-.75.75v3.75c0 .414.336.75.75.75Z" />
                         </svg>                                                   
@@ -41,7 +41,7 @@
                         </svg>                          
                         <p class="text-[20px] ml-[10px]">Posts</p>
                     </a>
-                    <a href="#" class="flex items-center hover:bg-black rounded-2xl w-[100%] pl-[25px] cursor-pointer">
+                    <a href="{{ route('create-user-dash') }}" class="flex items-center hover:bg-black rounded-2xl w-[100%] pl-[25px] cursor-pointer">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 h-[60px]">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
                         </svg>
@@ -75,8 +75,16 @@
             
         </section>
         {{-- RIGHT --}}
-        <section class="w-[80%]"></section>
+        <section class="w-[80%]">
+            <div
+                class="bg-gray-200 h-[10%]"
+            ></div>
+            <div class="w-[100%] h-[90%] flex justify-center items-center">
+                @yield('user_dash')
+            </div>
+            
+        </section>
         
-    </div>
+    </div>    
 </body>
 </html>
