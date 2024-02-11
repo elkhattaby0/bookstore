@@ -12,7 +12,7 @@
                 class="w-[49%] rounded-2xl bg-gray-100 flex justify-center p-[30px]"
             >
                 <img 
-                    src={{ $i->img }}
+                    src='{{ asset('storage/'.$i->image) }}'
                     class="w-[50%] rounded-lg shadow-md"
                 />
             </div>
@@ -24,8 +24,8 @@
                     <div class="w-[100%] flex justify-between">
                         <span>
                             <h1 class="font-bold text-[22px]">{{ $i->title }}</h1>
-                            <p class="text-gray-500 text-[15px]">{{ $i->author }}</p>
-                            <p class="text-gray-400 text-[12px]">07-02-2024</p>
+                            <p class="text-gray-500 text-[15px]">{{ $i->user->fname ??'--'}} <b>{{ $i->user->lname ??'--'}}</b></p>
+                            <p class="text-gray-400 text-[12px]">{{$i->created_at}}</p>
                         </span>                        
                         <h1 class="font-bold text-[28px]">${{ number_format($i->price, 2) }}</h1>
                     </div>
@@ -61,7 +61,7 @@
                             <button 
                                 class="bg-gray-800 hover:bg-gray-900 shadow-md text-white h-[40px] w-[40px] rounded font-bold"
                             >-</button>
-                            <input type="text" value="{{ $count }}" class=" h-[41px] w-[150px] rounded border-1 border-gray-800" />
+                            <input type="text" value="{{ 1 }}" class=" h-[41px] w-[150px] rounded border-1 border-gray-800" />
                             <button 
                                 onclick=""
                                 class="bg-gray-800 hover:bg-gray-900 shadow-md text-white h-[40px] w-[40px] rounded font-bold"
@@ -77,12 +77,7 @@
         <section class="w-[80%] mt-[80px]">
             <h1 class="font-bold text-[40px]">Overview</h1><br/>
             <p>
-                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nesciunt quae facere consequatur minima at, maiores amet accusantium! Aut veritatis perspiciatis voluptates ducimus amet debitis quos? Pariatur exercitationem vitae odio eveniet.
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur sint, libero assumenda accusamus eos ut quo quae ratione esse temporibus molestias, iure repellendus. Nostrum voluptas laudantium, vitae quibusdam ex impedit.
-                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nesciunt quae facere consequatur minima at, maiores amet accusantium! Aut veritatis perspiciatis voluptates ducimus amet debitis quos? Pariatur exercitationem vitae odio eveniet.
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur sint, libero assumenda accusamus eos ut quo quae ratione esse temporibus molestias, iure repellendus. Nostrum voluptas laudantium, vitae quibusdam ex impedit.
-                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nesciunt quae facere consequatur minima at, maiores amet accusantium! Aut veritatis perspiciatis voluptates ducimus amet debitis quos? Pariatur exercitationem vitae odio eveniet.
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur sint, libero assumenda accusamus eos ut quo quae ratione esse temporibus molestias, iure repellendus. Nostrum voluptas laudantium, vitae quibusdam ex impedit.
+                {{$i->details}}
             </p>
         </section>
     </div>

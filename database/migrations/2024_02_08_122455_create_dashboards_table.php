@@ -17,6 +17,9 @@ return new class extends Migration
             $table->string('title');
             $table->float('price');
             $table->text('details');
+            $table->softDeletes();
+            $table->unsignedBigInteger('language_id')->foreign('language_id')->references('id')->table('languages');
+            $table->unsignedBigInteger('catigory_id')->foreign('catigory_id')->references('id')->table('categories');
             $table->unsignedBigInteger('user_id')->foreign('user_id')->references('id')->table('users');
             $table->timestamps();
         });

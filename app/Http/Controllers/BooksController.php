@@ -2,12 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Dashboard;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class BooksController extends Controller
 {
     public function index(){
 
+        $dashboard = Dashboard::all();
+        $count = Dashboard::count();
         $books = [
             (object)["id" => 1, 'title' => 'Book_1', 'author' => 'Author_1', 'price' => 10.00, 'img' => 'https://booksondemand.ma/cdn/shop/products/71951W96oWL.jpg?v=1631701478&width=823'],
             (object)["id" => 2, 'title' => 'Book_2', 'author' => 'Author_2', 'price' => 11.99, 'img' => 'https://booksondemand.ma/cdn/shop/products/RichDad_PoorDadbyRobertT.Kiyosaki-books.jpg?v=1609441318&width=823'],
@@ -27,18 +31,13 @@ class BooksController extends Controller
             (object)["id" => 16, 'title' => 'Book_16', 'author' => 'Author_8', 'price' => 16.00, 'img' => 'https://booksondemand.ma/cdn/shop/products/RichDad_PoorDadbyRobertT.Kiyosaki-books.jpg?v=1609441318&width=823']
         ];
 
-        return view('components.book', compact('books'));
+        return view('components.book', compact('books', 'dashboard', 'count'));
     }
 
 
 
-    public function details(Request $request)  {
-
-        $books = [
-            (object)["id" => 16, 'title' => 'Book_16', 'author' => 'Author_8', 'price' => 16.00, 'img' => 'https://booksondemand.ma/cdn/shop/products/RichDad_PoorDadbyRobertT.Kiyosaki-books.jpg?v=1609441318&width=823']
-        ];
-
-        $count = 1;
-        return view('components.details', compact('books', 'count'));
+    public function details(Request $request, $id)  {
+        $books = Dashboard::where('id', $id)->get();
+        return view('components.details', compact('books'));
     }
 }

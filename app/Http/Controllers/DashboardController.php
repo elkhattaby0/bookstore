@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Categorie;
 use App\Models\Dashboard;
+use App\Models\Language;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -19,9 +22,11 @@ class DashboardController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(Dashboard $dashboard)
     {
-        return view('dashboard.create-user-dash');
+        $catigorie = Categorie::all();
+        $language = Language::all();
+        return view('dashboard.create-user-dash', compact('catigorie', 'language'));
     }
 
     /**
@@ -33,6 +38,8 @@ class DashboardController extends Controller
         $title = $request->input('title');
         $price = $request->input('price');
         $details = $request->input('details');
+        $language = $request->input('language_id');
+        $catigory = $request->input('catigory_id');
         $user_id = Auth::id();
         // dd(Auth::id());
         // dd($request);
@@ -40,7 +47,9 @@ class DashboardController extends Controller
             'image' => 'required|image|mimes:png,jpg,jpge,svg|max:10240',
             'title' => 'required|min:5',
             'price' => 'required',
-            'details' => 'required|min:5'
+            'details' => 'required|min:5',
+            'language_id' => 'required',
+            'catigory_id' => 'required'
         ]);
         
         Dashboard::create([
@@ -48,7 +57,9 @@ class DashboardController extends Controller
             'title' => $title,
             'price' => $price,
             'details' => $details,
-            'user_id' => $user_id
+            'user_id' => $user_id,
+            'language_id' => $language,
+            'catigory_id' => $catigory
         ]);
 
         return to_route('user-dash');
@@ -57,9 +68,10 @@ class DashboardController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Dashboard $dashboard)
+    public function show()
     {
-        //
+        $books = Dashboard::where('user_id', Auth::id())->get();
+        return view('dashboard.show-user-dash', compact('books'));
     }
 
     /**
@@ -81,8 +93,10 @@ class DashboardController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Dashboard $dashboard)
+    public function destroy(Dashboard $id)
     {
-        //
+        // dd($id);
+        $id->delete();
+        return to_route('show-user-dash')->with('destroymsg', 'Deleted successfully');
     }
 }

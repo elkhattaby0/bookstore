@@ -133,7 +133,7 @@
             >
                 @foreach ($books as $i)
                     <a 
-                        href="{{route('details_page')}}"
+                        {{-- href="{{route('details_page')}}" --}}
                         class="m-[8px] text-center hover:border-2 p-[8px] rounded-lg cursor-pointer"
                     >
                         <img src={{ $i->img }} class="w-[250px] rounded-lg shadow-md" />
@@ -158,7 +158,7 @@
             >
                 @foreach ($books as $i)
                     <a
-                        href="{{route('details_page')}}"
+                        {{-- href="{{route('details_page')}}" --}}
                         class="m-[8px] text-center hover:border-2 p-[8px] rounded-lg cursor-pointer"
                     >
                         <img src={{ $i->img }} class="w-[250px] rounded-lg shadow-md" />

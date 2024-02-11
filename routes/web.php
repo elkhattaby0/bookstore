@@ -1,10 +1,11 @@
 <?php
 
-use App\Http\Controllers\BooksController;
-use App\Http\Controllers\DashboardController;
+use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
-use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\BooksController;
+use App\Http\Controllers\CategorieController;
+use App\Http\Controllers\DashboardController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,7 +24,7 @@ Route::get('/', [HomeController::class, 'index'])
 Route::get('/books', [BooksController::class, 'index'])
 ->name('books_page');
 
-Route::get('book_nbr', [BooksController::class, 'details'])
+Route::get('book_nbr/{id}', [BooksController::class, 'details'])
 ->name('details_page');
 
 
@@ -43,12 +44,17 @@ Route::name('signin_page')
     Route::post('/', 'login');
 });
 
-Route::get('/logout', [UserController::class, 'logout'])
-->name('dashborad.logout');
+
+//dashboard
+
 
 Route::get('/dashboard', [DashboardController::class, 'index'])
 ->middleware('auth')
 ->name('user-dash');
+
+Route::get('/dashboard/posts', [DashboardController::class, 'show'])
+->middleware('auth')
+->name('show-user-dash');
 
 Route::get('/dashboard/newPost', [DashboardController::class, 'create'])
 ->middleware('auth')
@@ -56,3 +62,9 @@ Route::get('/dashboard/newPost', [DashboardController::class, 'create'])
 Route::post('/dashboard/newPost', [DashboardController::class, 'store'])
 ->middleware('auth')
 ->name('store');
+Route::delete('/dashboard/destroy/{id}', [DashboardController::class, 'destroy'])
+->middleware('auth')
+->name('user-destroy');
+
+Route::get('/logout', [UserController::class, 'logout'])
+->name('dashborad.logout');

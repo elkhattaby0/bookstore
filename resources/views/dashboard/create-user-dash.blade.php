@@ -1,7 +1,7 @@
 @extends('dashboard.user-dash')
 @section('user_dash')
     <div
-        class="w-[55%] mt-[20px]"
+        class="w-[55%] mt-[80px] "
     >
         <form
             method="POST"
@@ -46,6 +46,38 @@
                 />
                 <p>
                     @error('price')
+                        {{ $message }}
+                    @enderror
+                </p>
+            </label>
+            <label class="w-[100%] h-[70px] flex flex-col justify-between my-[20px]">
+                <p>catigory</p>
+                <select 
+                    name="catigory_id"
+                    class=" rounded-lg"
+                >
+                    @foreach ($catigorie as $i)
+                        <option value="{{ $i->id }}">{{ $i->name }}</option>
+                    @endforeach                    
+                </select>
+                <p>
+                    @error('catigory_id')
+                        {{ $message }}
+                    @enderror
+                </p>
+            </label>
+            <label class="w-[100%] h-[70px] flex flex-col justify-between my-[20px]">
+                <p>Language</p>
+                <select 
+                    name="language_id"
+                    class=" rounded-lg"
+                >
+                    @foreach ($language as $i)
+                    <option value="{{ $i->id }}">{{ $i->name }}</option>
+                    @endforeach                    
+                </select>
+                <p>
+                    @error('language_id')
                         {{ $message }}
                     @enderror
                 </p>

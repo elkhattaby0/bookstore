@@ -2,20 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Categorie;
+use App\Models\Language;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 
-class CategorieController extends Controller
+class LanguageController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        // $categories = DB::table('categories')->get();
-        // dd($categories);
-        // return view('dashboard.create-user-dash', compact(''));
+        //
     }
 
     /**
@@ -37,7 +34,7 @@ class CategorieController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Categorie $categorie)
+    public function show(Language $language)
     {
         //
     }
@@ -45,7 +42,7 @@ class CategorieController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Categorie $categorie)
+    public function edit(Language $language)
     {
         //
     }
@@ -53,7 +50,7 @@ class CategorieController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Categorie $categorie)
+    public function update(Request $request, Language $language)
     {
         //
     }
@@ -61,7 +58,7 @@ class CategorieController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Categorie $categorie)
+    public function destroy(Language $language)
     {
         //
     }
