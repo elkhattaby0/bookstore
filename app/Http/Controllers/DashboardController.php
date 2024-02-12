@@ -41,8 +41,7 @@ class DashboardController extends Controller
         $language = $request->input('language_id');
         $catigory = $request->input('catigory_id');
         $user_id = Auth::id();
-        // dd(Auth::id());
-        // dd($request);
+        
         $request->validate([
             'image' => 'required|image|mimes:png,jpg,jpge,svg|max:10240',
             'title' => 'required|min:5',
@@ -77,17 +76,27 @@ class DashboardController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Dashboard $dashboard)
+    public function edit(Dashboard $dashboard, $id)
     {
-        //
+        $dashboard = Dashboard::where('id', $id)->get();
+        // dd();
+        return view('dashboard.edit-user-dash', compact('dashboard'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Dashboard $dashboard)
+    public function update(Request $request, Dashboard $dashboard, $id)
     {
-        //
+        // $request
+        // dd($request);
+        // Dashboard::where('id', $id)->update([$request]);
+        // dd($dashboard->fill($request));
+        // return to_route('dashboard.show-user-dash');
+    }
+
+    public function editSetting(Dashboard $dashboard){
+        return view('dashboard.setting-user-dash');
     }
 
     /**

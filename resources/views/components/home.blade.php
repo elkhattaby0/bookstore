@@ -169,6 +169,7 @@
                 @endforeach
             </section>
             <a
+                href="{{ route('books_page') }}"
                 class="text-blue-400 font-bold text-[20px] bg-gray-100 hover:bg-gray-200 rounded shadow-xl flex items-center justify-center text-center h-[50px] w-[300px] cursor-pointer"
             >View all books</a>
         </div>

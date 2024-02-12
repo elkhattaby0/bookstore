@@ -41,6 +41,7 @@ class UserController extends Controller
 
         return redirect()->route('signin_page')->with('message', "You've created your account successfully.");
     }
+    
 
     //Login
     public function show()  {

@@ -10,13 +10,13 @@
 
 <style> 
     #letfUser {
-        height: 100vh;
-        overflow-y: scroll;
+        height: 97vh;
+        /* overflow-y: scroll; */
     }
 </style>
 <body>
     <div 
-        class="w-[100%] flex"
+        class="w-[100%] flex bg-blue-600 items-center"
     >
         <section class="w-[20%] h-[100vh] bg-blue-600 text-white flex flex-col justify-between items-center">
             <div
@@ -27,7 +27,7 @@
                 </h1>                
             </div>
             <div 
-                class="h-[85%] flex flex-col justify-between  w-[95%]"
+                class="h-[85%] flex flex-col justify-between w-[95%]"
             >
                 <ul class="flex flex-col items-center w-[100%] ">
                     <a href="{{ route('home_page') }}"  class="flex items-center hover:bg-black rounded-2xl w-[100%] pl-[25px] cursor-pointer">
@@ -62,7 +62,7 @@
                     </a>
                 </ul>
                 <ul>
-                    <a href="#" class="flex items-center hover:bg-black rounded-2xl w-[100%] pl-[25px] cursor-pointer">
+                    <a href="{{ route('user-setting') }}" class="flex items-center hover:bg-black rounded-2xl w-[100%] pl-[25px] cursor-pointer">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" class="w-6 h-6 h-[60px]">
                             <path strokeLinecap="round" strokeLinejoin="round" d="M9.594 3.94c.09-.542.56-.94 1.11-.94h2.593c.55 0 1.02.398 1.11.94l.213 1.281c.063.374.313.686.645.87.074.04.147.083.22.127.325.196.72.257 1.075.124l1.217-.456a1.125 1.125 0 0 1 1.37.49l1.296 2.247a1.125 1.125 0 0 1-.26 1.431l-1.003.827c-.293.241-.438.613-.43.992a7.723 7.723 0 0 1 0 .255c-.008.378.137.75.43.991l1.004.827c.424.35.534.955.26 1.43l-1.298 2.247a1.125 1.125 0 0 1-1.369.491l-1.217-.456c-.355-.133-.75-.072-1.076.124a6.47 6.47 0 0 1-.22.128c-.331.183-.581.495-.644.869l-.213 1.281c-.09.543-.56.94-1.11.94h-2.594c-.55 0-1.019-.398-1.11-.94l-.213-1.281c-.062-.374-.312-.686-.644-.87a6.52 6.52 0 0 1-.22-.127c-.325-.196-.72-.257-1.076-.124l-1.217.456a1.125 1.125 0 0 1-1.369-.49l-1.297-2.247a1.125 1.125 0 0 1 .26-1.431l1.004-.827c.292-.24.437-.613.43-.991a6.932 6.932 0 0 1 0-.255c.007-.38-.138-.751-.43-.992l-1.004-.827a1.125 1.125 0 0 1-.26-1.43l1.297-2.247a1.125 1.125 0 0 1 1.37-.491l1.216.456c.356.133.751.072 1.076-.124.072-.044.146-.086.22-.128.332-.183.582-.495.644-.869l.214-1.28Z" />
                             <path strokeLinecap="round" strokeLinejoin="round" d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
@@ -82,21 +82,24 @@
             
         </section>
         {{-- RIGHT --}}
-        <section class="w-[80%]" id="letfUser">
+        <section class="w-[79.4%] bg-gray-100 rounded-2xl" id="letfUser">
             <div
-                class="bg-gray-200 h-[10%] flex justify-center"
+                class=" h-[12%] bg-gray-100 flex justify-center rounded-2xl"
             >
                 <section class="w-[95%] flex justify-between items-center">
                     <p>
                         Profit: <b>$100.00</b>
                     </p>
-                    <span>
-                        <img src='' alt="" class="rounded-2xl h-[40px] w-[40px]" />
-                        <p>{{ Auth()->user()->fname }} {{ Auth()->user()->lname }}</p>
+                    <span class="flex justify-between items-center w-[]">
+                        <label class="flex flex-col text-[13px] leading-4">
+                            <p class="font-bold">{{ Auth()->user()->fname }} {{ Auth()->user()->lname }}</p>
+                            <p class="text-gray-500">{{ Auth()->user()->email }}</p>
+                        </label>
+                        <img src='https://cdn-icons-png.flaticon.com/512/149/149071.png' alt="" class="rounded-2xl h-[40px] w-[40px] ml-[8px]" />                      
                     </span>
                 </section>
             </div>
-            <div class="w-[100%] h-[90%] flex justify-center items-center ">
+            <div class="w-[100%] h-[88%] flex justify-center items-center ">
                 @yield('user_dash')
             </div>
             

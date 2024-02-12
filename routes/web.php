@@ -62,9 +62,22 @@ Route::get('/dashboard/newPost', [DashboardController::class, 'create'])
 Route::post('/dashboard/newPost', [DashboardController::class, 'store'])
 ->middleware('auth')
 ->name('store');
+
+Route::get('/dashboard/edit/{id}', [DashboardController::class, 'edit'])
+->middleware('auth')
+->name('user-edit');
+Route::put('/dashboard/update/{id}', [DashboardController::class, 'update'])
+->middleware('auth')
+->name('user-update');
+
+Route::get('/dashboard/setting', [DashboardController::class, 'editSetting'])
+->middleware('auth')
+->name('user-setting');
+
 Route::delete('/dashboard/destroy/{id}', [DashboardController::class, 'destroy'])
 ->middleware('auth')
 ->name('user-destroy');
 
 Route::get('/logout', [UserController::class, 'logout'])
+->middleware('auth')
 ->name('dashborad.logout');
