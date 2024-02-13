@@ -73,6 +73,9 @@ Route::put('/dashboard/update/{id}', [DashboardController::class, 'update'])
 Route::get('/dashboard/setting', [DashboardController::class, 'editSetting'])
 ->middleware('auth')
 ->name('user-setting');
+Route::put('/dashboard/setting', [DashboardController::class, 'updateSetting'])
+->middleware('auth')
+->name('user-update-setting');
 
 Route::delete('/dashboard/destroy/{id}', [DashboardController::class, 'destroy'])
 ->middleware('auth')

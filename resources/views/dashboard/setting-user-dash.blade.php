@@ -8,14 +8,19 @@
         <li class=" list-disc ml-[20px]">You can change your information.</li>
         <li class=" list-disc ml-[20px]">To change your password must enter old one.<li>
     </ul>
-
+    @if (session()->has('error'))
+        <x-alert color='red'>
+            {{ session('error') }}
+        </x-alert>
+    @endif
     <form
         method="POST"
-        action=""
+        action="{{ route('user-update-setting') }}"
         enctype="multipart/form-data"
         class="w-[100] flex flex-col justify-between items-center"
     >
         @csrf
+        @method("PUT")
         <div class="w-[25%] flex items-center">
             <label class="w-[100%] ">
                 <img 
@@ -45,9 +50,10 @@
                     type="text"
                     name="fname"
                     class=" rounded-lg"
+                    value="{{ old('fname', Auth::user()->fname) }}"
                 />
                 <p>
-                    @error('title')
+                    @error('fname')
                         {{ $message }}
                     @enderror
                 </p>
@@ -58,22 +64,24 @@
                     type="text"
                     name="lname"
                     class=" rounded-lg"
+                    value="{{ old('lname', Auth::user()->lname) }}"
                 />
                 <p>
-                    @error('price')
+                    @error('lname')
                         {{ $message }}
                     @enderror
                 </p>
             </label>
             <label class="w-[48%] h-[70px] flex flex-col justify-between my-[20px]">
-                <p>Date birh</p>
+                <p>Date Birth</p>
                 <input
                     type="date"
                     name="dateBirth"
                     class=" rounded-lg"
+                    value="{{ old('dateBirth', Auth::user()->dateBirth) }}"
                 />
                 <p>
-                    @error('catigory_id')
+                    @error('dateBirth')
                         {{ $message }}
                     @enderror
                 </p>
@@ -81,15 +89,14 @@
             <label class="w-[48%] h-[70px] flex flex-col justify-between my-[20px]">
                 <p>Gender</p>
                 <select
-                    type="email"
-                    name="email"
+                    name="gender"
                     class=" rounded-lg"
                 >
                     <option value="male">Male</option>
                     <option value="female">Female</option>
                 </select>
                 <p>
-                    @error('catigory_id')
+                    @error('gender')
                         {{ $message }}
                     @enderror
                 </p>
@@ -100,9 +107,10 @@
                     type="email"
                     name="email"
                     class=" rounded-lg"
+                    value="{{ old('email', Auth::user()->email) }}"
                 />
                 <p>
-                    @error('catigory_id')
+                    @error('email')
                         {{ $message }}
                     @enderror
                 </p>
@@ -111,11 +119,11 @@
                 <p>Old password</p>
                 <input
                     type="password"
-                    name="password"
+                    name="old_password"
                     class=" rounded-lg"
                 />
                 <p>
-                    @error('price')
+                    @error('old_password')
                         {{ $message }}
                     @enderror
                 </p>
@@ -128,7 +136,7 @@
                     class=" rounded-lg"
                 />
                 <p>
-                    @error('price')
+                    @error('password')
                         {{ $message }}
                     @enderror
                 </p>
