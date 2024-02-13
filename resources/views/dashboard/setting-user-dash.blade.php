@@ -24,7 +24,7 @@
         <div class="w-[25%] flex items-center">
             <label class="w-[100%] ">
                 <img 
-                    src="https://cdn-icons-png.flaticon.com/512/149/149071.png"
+                    src="{{ asset('storage/' . Auth()->user()->image ) }}"
                     alt=""
                     class="w-[150px] rounded-lg"
                 />

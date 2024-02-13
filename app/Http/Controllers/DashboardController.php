@@ -70,7 +70,7 @@ class DashboardController extends Controller
      */
     public function show()
     {
-        $books = Dashboard::where('user_id', Auth::id())->get();
+        $books = Dashboard::where('user_id', Auth::id())->orderByDesc('created_at')->get();
         return view('dashboard.show-user-dash', compact('books'));
     }
 
@@ -80,10 +80,10 @@ class DashboardController extends Controller
     public function edit(Dashboard $dashboard, Categorie $categorie, Language $language, $id)
     {
         $dashboard = Dashboard::where('id', $id)->get();
-        // dd();
+        
         $catigory = Categorie::find(Dashboard::find($id)->catigory_id)->name;
-        $languageSe = Language::find(Dashboard::find($id)->language)->name;
-        dd($languageSe);
+        $languageSe = Language::find(Dashboard::find($id)->language_id)->name;
+        // dd($languageSe);
 
         // dd(Categorie::find(Dashboard::find($id)->catigory_id)->name);
         return view('dashboard.edit-user-dash', compact('dashboard', 'catigory', 'languageSe'));
@@ -107,7 +107,7 @@ class DashboardController extends Controller
         $dash = Dashboard::find($id);
 
         if($request->has('image')) {
-            $dash->image = $request->input('image');
+            $dash->image = $request->file('image')->store('covers', 'public');
         }else {
             $dash->image ;
         }
@@ -132,14 +132,19 @@ class DashboardController extends Controller
 
         $user = Auth::user();
         
-        // dd($user);
-        // dd($request->has('old_password'));
+        // dd($request->old_password !== null);
+        if ($request->old_password !== null) {
+            if (!Hash::check($request->input('old_password'), $user->password)) {
+                return redirect()->back()->with('error', 'The old password is incorrect.');
+            }
+        }
+        
 
-        // if ($request->has('old_password')) {
-        //     if (!Hash::check($request->input('old_password'), $user->password)) {
-        //         return redirect()->back()->with('error', 'The old password is incorrect.');
-        //     }
-        // }
+        if($request->has('image')) {
+            $user->image = $request->file('image')->store('users', 'public');
+        }else {
+            $user->image ;
+        }
 
         $user->fname = $request->input('fname'); 
         $user->lname = $request->input('lname'); 
@@ -147,18 +152,19 @@ class DashboardController extends Controller
         $user->gender = $request->input('gender'); 
         $user->email = $request->input('email'); 
 
-        // if ($request->has('password')) {
-        //     $user->password = bcrypt($request->input('password'));
-        // }
+        if ($request->password !== null) {
+            $user->password = bcrypt($request->input('password'));
+        }
 
         $request->validate([
+            'image' => 'image|mimes:png,jpg,jpge,svg|max:10240',
             'fname' => 'required|min:1',
             'lname' => 'required|min:1',
             'dateBirth' => 'required|date',
             'gender' => 'required',
             'email' => 'required|email|unique:users,email,' . Auth::id(),
             // 'old_password' => 'required_with:password|min:6',
-            // 'password' => 'nullable|min:6|confirmed',
+            'password' => 'nullable|min:6',
         ]);
 
         $user->save();

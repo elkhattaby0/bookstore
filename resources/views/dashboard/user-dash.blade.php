@@ -95,7 +95,7 @@
                             <p class="font-bold">{{ Auth()->user()->fname }} {{ Auth()->user()->lname }}</p>
                             <p class="text-gray-500">{{ Auth()->user()->email }}</p>
                         </label>
-                        <img src='https://cdn-icons-png.flaticon.com/512/149/149071.png' alt="" class="rounded-2xl h-[40px] w-[40px] ml-[8px]" />                      
+                        <img src='{{ asset('storage/' . Auth()->user()->image ) }}' alt="" class="rounded-2xl h-[40px] w-[40px] ml-[8px]" />                      
                     </span>
                 </section>
             </div>

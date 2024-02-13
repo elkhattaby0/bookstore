@@ -85,7 +85,7 @@
                         <a href="{{ route('user-dash') }}">
                             {{-- {{ Auth::user()->email }} --}}
                             <img
-                                src="https://cdn-icons-png.flaticon.com/512/149/149071.png"
+                                src="{{ asset('storage/' . Auth()->user()->image ) }}"
                                 class="w-[35px] h-[35px] hover:border-2 hover:border-blue-600 rounded-2xl"
                             />
                         </a>                    

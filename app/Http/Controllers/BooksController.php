@@ -10,7 +10,7 @@ class BooksController extends Controller
 {
     public function index(){
 
-        $dashboard = Dashboard::all();
+        $dashboard = Dashboard::orderByDesc('created_at')->get();
         $count = Dashboard::count();
 
 
