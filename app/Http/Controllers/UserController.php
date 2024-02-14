@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
 
 class UserController extends Controller
@@ -42,6 +43,55 @@ class UserController extends Controller
         return redirect()->route('signin_page')->with('message', "You've created your account successfully.");
     }
     
+    // ---
+
+    public function edit(){
+        return view('dashboard.setting-user-dash');
+    }
+
+    public function update(Request $request) {
+
+        $user = Auth::user();
+        
+        if ($request->old_password !== null) {
+            if (!Hash::check($request->input('old_password'), $user->password)) {
+                return redirect()->back()->with('error', 'The old password is incorrect.');
+            }
+        }
+        
+
+        if($request->has('image')) {
+            $user->image = $request->file('image')->store('users', 'public');
+        }else {
+            $user->image ;
+        }
+
+        $user->fname = $request->input('fname'); 
+        $user->lname = $request->input('lname'); 
+        $user->dateBirth = $request->input('dateBirth'); 
+        $user->gender = $request->input('gender'); 
+        $user->email = $request->input('email'); 
+
+        if ($request->password !== null) {
+            $user->password = bcrypt($request->input('password'));
+        }
+
+        $request->validate([
+            'image' => 'image|mimes:png,jpg,jpge,svg|max:10240',
+            'fname' => 'required|min:1',
+            'lname' => 'required|min:1',
+            'dateBirth' => 'required|date',
+            'gender' => 'required',
+            'email' => 'required|email|unique:users,email,' . Auth::id(),
+            // 'old_password' => 'required_with:password|min:6',
+            'password' => 'nullable|min:6',
+        ]);
+
+        $user->save();
+        return view('dashboard.setting-user-dash');
+    }
+
+    // ---
 
     //Login
     public function show()  {
@@ -63,7 +113,7 @@ class UserController extends Controller
         ]);
 
         if(Auth::attempt($begin)){
-            return redirect()->route('home_page');
+            return redirect()->route('user-dash');
         } else {
             return redirect()->route('signin_page')->with('Field', 'Email or password incorrect.');
         }

@@ -91,12 +91,18 @@
                 <div class="w-[95%] h-[60px] mt-[10px] rounded-lg bg-blue-300 flex justify-center ">
                     <section class=" flex justify-between items-center w-[90%]">
                         <p class="text-gray-500">{{ $count }} items</p>
-                        <select class="border-gray-500 rounded-md">
-                            <option>Best Matches</option>
-                            <option>Price Low to High</option>
-                            <option>Price High to Low</option>
-                            <option>Newest Arriivals</option>
-                        </select>
+                        <form
+                            method="GET"
+                            action="{{ route('books_page') }}"
+                        >
+                            <select class="border-gray-500 rounded-md" name="category">
+                                <option value="1">Best Matches</option>
+                                <option value="2">Price Low to High</option>
+                                <option value="3">Price High to Low</option>
+                                <option value="4">Newest Arriivals</option>
+                            </select>
+                            <button type="submit">Filter</button>
+                        </form>
                     </section>
                     
                 </div>
@@ -110,13 +116,16 @@
                                 class="m-[5px] text-center bg-gray-100 border-2 p-[8px] rounded-lg cursor-pointer"
                             >
                                 <img src='{{ asset('storage/'.$i->image) }}' class="w-[200px] rounded-lg" />
-                                <h1 class="font-bold text-[20px] w-[90%]">{{ $i->title }}</h1>
+                                <h1 class="font-bold text-[20px] w-[200px]">{{ $i->title }}</h1>
                                 <p class="text-gray-500 text-[13px]">{{ $i->created_at }}</p>
                                 <h3 class="font-bold text-[18px] text-blue-600">${{ number_format($i->price, 2) }}</h3>
                             </a>
                         @endforeach
                     </section>
                 </div>
+                <div class="bg-white text-black">
+                    {{ $dashboard->links() }} 
+                </div>                
             </div>
         </section>
     </div>

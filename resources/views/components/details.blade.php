@@ -1,13 +1,15 @@
 @extends('components.navbar')
 @section('content')
-
     <div
         class="w-[100%] flex flex-col items-center justify-center mt-[30px]"
-    >
-        <section
+    >   @foreach ($books as $i)
+        <form
+            method="POST"
+            action="{{ route('addToBag', $i->id) }}"
             class="w-[90%] flex justify-between"
         >
-        @foreach ($books as $i)
+        @csrf
+        
             <div 
                 class="w-[49%] rounded-2xl bg-gray-100 flex justify-center p-[30px]"
             >
@@ -58,22 +60,27 @@
                             </section>
                         </div>
                         <div class="mt-[20px]">
-                            <button 
+                            <button onclick="decrement()"
                                 class="bg-gray-800 hover:bg-gray-900 shadow-md text-white h-[40px] w-[40px] rounded font-bold"
                             >-</button>
-                            <input type="text" value="{{ 1 }}" class=" h-[41px] w-[150px] rounded border-1 border-gray-800" />
+                            <input type="text" id="count" name="count" value="1" class=" h-[41px] w-[150px] rounded border-1 border-gray-800" />
                             <button 
-                                onclick=""
+                                onclick="increment()"
                                 class="bg-gray-800 hover:bg-gray-900 shadow-md text-white h-[40px] w-[40px] rounded font-bold"
                             >+</button>
                         </div>
+                        <p>
+                            @if(session()->has('countMsg'))
+                                {{session('countMsg')}}
+                            @endif
+                        </p>
                         <button
                             class="bg-blue-600 hover:bg-blue-700 h-[45px] w-[500px] rounded-lg text-white font-bold shadow-md mt-[30px]" 
                         >Add to Bag</button>
                 </section>
             </div>
         @endforeach
-        </section>
+        </form>
         <section class="w-[80%] mt-[80px]">
             <h1 class="font-bold text-[40px]">Overview</h1><br/>
             <p>
@@ -82,4 +89,17 @@
         </section>
     </div>
     <x-footer />
+    <script>
+        let x=1
+        function increment() {
+            if(x <= 99){
+                return document.getElementById("count").value = x++
+            }
+        }
+        function decrement() {
+            if(x > 0){
+                return document.getElementById("count").value = x--
+            }
+        }
+    </script>
 @endsection

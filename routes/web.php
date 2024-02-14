@@ -24,9 +24,12 @@ Route::get('/', [HomeController::class, 'index'])
 Route::get('/books', [BooksController::class, 'index'])
 ->name('books_page');
 
+
 Route::get('book_nbr/{id}', [BooksController::class, 'details'])
 ->name('details_page');
-
+// Bag
+Route::post('book_nbr/{id}', [BooksController::class, 'addToBag'])
+->name('addToBag');
 
 Route::name('signup_page')
 ->controller(UserController::class)
@@ -70,10 +73,10 @@ Route::put('/dashboard/update/{id}', [DashboardController::class, 'update'])
 ->middleware('auth')
 ->name('user-update');
 
-Route::get('/dashboard/setting', [DashboardController::class, 'editSetting'])
+Route::get('/dashboard/setting', [UserController::class, 'edit'])
 ->middleware('auth')
 ->name('user-setting');
-Route::put('/dashboard/setting', [DashboardController::class, 'updateSetting'])
+Route::put('/dashboard/setting', [UserController::class, 'update'])
 ->middleware('auth')
 ->name('user-update-setting');
 
@@ -84,3 +87,4 @@ Route::delete('/dashboard/destroy/{id}', [DashboardController::class, 'destroy']
 Route::get('/logout', [UserController::class, 'logout'])
 ->middleware('auth')
 ->name('dashborad.logout');
+

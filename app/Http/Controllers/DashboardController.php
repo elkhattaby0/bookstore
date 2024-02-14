@@ -123,53 +123,6 @@ class DashboardController extends Controller
         return to_route('show-user-dash')->with('success', "Your post has been updated successfully");
     }
 
-    public function editSetting(Dashboard $dashboard){
-        // dd(Auth::user());
-        return view('dashboard.setting-user-dash');
-    }
-
-    public function updateSetting(Request $request) {
-
-        $user = Auth::user();
-        
-        // dd($request->old_password !== null);
-        if ($request->old_password !== null) {
-            if (!Hash::check($request->input('old_password'), $user->password)) {
-                return redirect()->back()->with('error', 'The old password is incorrect.');
-            }
-        }
-        
-
-        if($request->has('image')) {
-            $user->image = $request->file('image')->store('users', 'public');
-        }else {
-            $user->image ;
-        }
-
-        $user->fname = $request->input('fname'); 
-        $user->lname = $request->input('lname'); 
-        $user->dateBirth = $request->input('dateBirth'); 
-        $user->gender = $request->input('gender'); 
-        $user->email = $request->input('email'); 
-
-        if ($request->password !== null) {
-            $user->password = bcrypt($request->input('password'));
-        }
-
-        $request->validate([
-            'image' => 'image|mimes:png,jpg,jpge,svg|max:10240',
-            'fname' => 'required|min:1',
-            'lname' => 'required|min:1',
-            'dateBirth' => 'required|date',
-            'gender' => 'required',
-            'email' => 'required|email|unique:users,email,' . Auth::id(),
-            // 'old_password' => 'required_with:password|min:6',
-            'password' => 'nullable|min:6',
-        ]);
-
-        $user->save();
-        return view('dashboard.setting-user-dash');
-    }
 
     /**
      * Remove the specified resource from storage.
