@@ -63,7 +63,7 @@
     </div>
     <div class="bg-gray-100">
         <div class="container mx-auto py-4 px-5 flex flex-wrap flex-col sm:flex-row">
-            <p class="text-gray-500 text-sm text-center sm:text-left">© 2024 Tailblocks — <b>Lahoucine El Khattaby</b>
+            <p class="text-gray-500 text-sm text-center sm:text-left">© 2024 <b>Lahoucine El Khattaby</b>
             </p>
             <span class="inline-flex sm:ml-auto sm:mt-0 mt-2 justify-center sm:justify-start">
                 <a class="text-gray-500">

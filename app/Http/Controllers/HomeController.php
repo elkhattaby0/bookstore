@@ -2,11 +2,19 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Dashboard;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\DB;
+
+use function PHPSTORM_META\map;
 
 class HomeController extends Controller
 {
     public function index(){
+        // Bag
+        $bag = DB::table('cache')->count();
+
         $sectionTwo = [
             (object)["id"=> 1, "nbr"=> "8M+", "txt"=> "Reader", "img"=> '
                 https://cdn-icons-png.flaticon.com/512/1830/1830769.png
@@ -42,6 +50,42 @@ class HomeController extends Controller
             (object)["id" => 8, 'title' => 'Book_8', 'author' => 'Author_8', 'price' => 16.00, 'img' => 'https://booksondemand.ma/cdn/shop/products/RichDad_PoorDadbyRobertT.Kiyosaki-books.jpg?v=1609441318&width=823']
         ];
 
-        return view('components.home', compact('sectionTwo', 'category', 'books'));
+        return view('components.home', compact('sectionTwo', 'category', 'books', 'bag'));
+    }
+
+    public function bagIndex() {
+        
+        $bag = DB::table('cache')->count();
+        
+        $bagShow = DB::table('cache')
+            ->get(['value'])
+            ->map(function ($item) {
+                $item->value = unserialize($item->value);
+                return $item;
+        });
+
+        // Now, you can proceed with the join
+        $bagShowWithDashboards = $bagShow->map(function ($item) {
+            $bookId = $item->value['book_id']; // Assuming 'book_id' is the key inside the serialized value
+            $dashboardId = DB::table('dashboards')
+                ->where('id', $bookId)
+                ->first();
+            $item->dashboard_id = $dashboardId;
+            return $item;
+        });
+
+        // foreach ($bagShowWithDashboards as $i) {
+        //     dd($i->dashboard_id->price);
+        // }
+        // dd($bagShowWithDashboards);
+
+        return view('components.bag', compact('bag', 'bagShowWithDashboards'));
+    }
+
+    public function bagDestroy($id) {
+
+        // dd('bag'.$id);
+        Cache::forget('bag'.$id);
+        return to_route('bag_page');
     }
 }

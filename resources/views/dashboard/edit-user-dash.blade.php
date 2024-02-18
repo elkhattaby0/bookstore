@@ -24,7 +24,9 @@
                         class="w-[200px] rounded-lg shadow-md"
                     />
                 </label>
-                <label class="w-[100%] h-[70px] flex flex-col justify-between my-[20px]">
+            </div>
+            <div class="w-[70%] flex flex-wrap justify-between ">
+                <label class="w-[48%] h-[70px] flex flex-col justify-between my-[20px]">
                     <p>Image</p>
                     <input
                         type="file"
@@ -38,9 +40,6 @@
                         @enderror
                     </p>
                 </label>
-            </div>
-            <div class="w-[70%] flex flex-wrap justify-between ">
-                
                 <label class="w-[48%] h-[70px] flex flex-col justify-between my-[20px]">
                     <p>Title</p>
                     <input
@@ -102,6 +101,24 @@
                     </select>
                     <p>
                         @error('language_id')
+                            {{ $message }}
+                        @enderror
+                    </p>
+                </label>
+                <label class="w-[48%] h-[70px] flex flex-col justify-between my-[20px]">
+                    <p>Format</p>
+                    <select 
+                        name="format"
+                        class=" rounded-lg"
+                        
+                    >
+                    <option value="{{ old('format', $i->format) }}">{{ old('format', $i->format) }}</option>
+                        {{-- @foreach ($language as $i)
+                        <option value="{{ $i->id }}">{{ $i->name }}</option>
+                        @endforeach                     --}}
+                    </select>
+                    <p>
+                        @error('format')
                             {{ $message }}
                         @enderror
                     </p>

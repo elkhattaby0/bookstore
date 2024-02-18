@@ -7,6 +7,7 @@
             method="POST"
             action="{{ route('addToBag', $i->id) }}"
             class="w-[90%] flex justify-between"
+            id="formRef"
         >
         @csrf
         
@@ -60,12 +61,13 @@
                             </section>
                         </div>
                         <div class="mt-[20px]">
-                            <button onclick="decrement()"
+                            <button 
+                                onclick="decrement(); return false;"
                                 class="bg-gray-800 hover:bg-gray-900 shadow-md text-white h-[40px] w-[40px] rounded font-bold"
                             >-</button>
                             <input type="text" id="count" name="count" value="1" class=" h-[41px] w-[150px] rounded border-1 border-gray-800" />
                             <button 
-                                onclick="increment()"
+                                onclick="increment(); return false;"
                                 class="bg-gray-800 hover:bg-gray-900 shadow-md text-white h-[40px] w-[40px] rounded font-bold"
                             >+</button>
                         </div>
@@ -75,6 +77,8 @@
                             @endif
                         </p>
                         <button
+                            onclick="return submitForm(true);"
+                            type="submit"
                             class="bg-blue-600 hover:bg-blue-700 h-[45px] w-[500px] rounded-lg text-white font-bold shadow-md mt-[30px]" 
                         >Add to Bag</button>
                 </section>
@@ -92,14 +96,30 @@
     <script>
         let x=1
         function increment() {
-            if(x <= 99){
-                return document.getElementById("count").value = x++
+            let countInput = document.getElementById("count");
+            let count = parseInt(countInput.value);
+            if (count < 99) {
+                count++;
+                countInput.value = count;
             }
         }
         function decrement() {
-            if(x > 0){
-                return document.getElementById("count").value = x--
+            let countInput = document.getElementById("count");
+            let count = parseInt(countInput.value);
+            if (count > 1) {
+                count--;
+                countInput.value = count;
             }
+        }
+
+        function submitForm(submitAllowed) {
+            if (submitAllowed) {
+            document.getElementById('formRef').onsubmit = null;
+            return true;
+        } else {
+            document.getElementById('formRef').onsubmit = function() { return false; };
+            return false;
+        }
         }
     </script>
 @endsection

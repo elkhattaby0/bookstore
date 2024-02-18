@@ -12,79 +12,118 @@
                 </div><hr class="my-[10px]"/>
                 <div>
                     <p class="font-bold text-[18px]">Category</p>
-                    <ul class="ml-[20px]">
-                        <li class="flex items-center">
-                            <input type="checkbox" />
-                            <p class="ml-[10px]">Sports</p>
-                        </li>
-                        <li class="flex items-center">
-                            <input type="checkbox" />
-                            <p class="ml-[10px]">Finance</p>
-                        </li>
-                        <li class="flex items-center">
-                            <input type="checkbox" />
-                            <p class="ml-[10px]">Romance</p>
-                        </li>
+                    <form
+                        method="GET"
+                        action="{{ route('books_page') }}"
+                        id="filterForm"
+                        onsubmit="return false;"
+                    >
+                    @csrf
+                    <ul class="ml-[20px]" name="byCategory" >
+                        @foreach ($categories as $i)                                
+                            <li class="flex items-center">
+                                <input type="checkbox" 
+                                    value="{{ $i->id }}" 
+                                    name="byCategory" 
+                                    onchange="document.getElementById('filterForm').submit()" 
+                                />
+                                <p class="ml-[10px]">{{ $i->name }}</p>
+                            </li>
+                        @endforeach
                     </ul>
+                    
                 </div><hr class="my-[10px]"/>
                 <div class="">
                     <p class="font-bold text-[18px]">Book Format</p>
-                    <ul class="ml-[20px]">
+                    <ul class="ml-[20px]" name='byFormat'>
                         <li class="flex items-center">
-                            <input type="checkbox" />
+                            <input 
+                                type="checkbox" 
+                                value="1"
+                                name='byFormat'
+                                onchange="document.getElementById('filterForm').submit()" 
+                            />
                             <p class="ml-[10px]">Hardcover</p>
                         </li>
                         <li class="flex items-center">
-                            <input type="checkbox" />
+                            <input 
+                                type="checkbox" 
+                                value="2"
+                                name='byFormat'
+                                onchange="document.getElementById('filterForm').submit()" 
+                            />
                             <p class="ml-[10px]">Paperback</p>
                         </li>
                         <li class="flex items-center">
-                            <input type="checkbox" />
+                            <input 
+                                type="checkbox" 
+                                value="3"
+                                name='byFormat'
+                                onchange="document.getElementById('filterForm').submit()" 
+                            />
                             <p class="ml-[10px]">Logo book</p>
                         </li>
                     </ul>
                 </div><hr class="my-[10px]"/>
                 <div class="">
                     <p class="font-bold text-[18px]">Price</p>
-                    <ul class="ml-[20px]">
+                    <ul class="ml-[20px]" name='byPrice'>
                         <li class="flex items-center">
-                            <input type="checkbox" />
+                            <input 
+                                type="checkbox" 
+                                value="1"
+                                name='byPrice'
+                                onchange="document.getElementById('filterForm').submit()" 
+                            />
                             <p class="ml-[10px]">Under $15</p>
                         </li>
                         <li class="flex items-center">
-                            <input type="checkbox" />
+                            <input  
+                                type="checkbox" 
+                                value="2"
+                                name='byPrice'
+                                onchange="document.getElementById('filterForm').submit()" 
+                            />
                             <p class="ml-[10px]">$15 - $25</p>
                         </li>
                         <li class="flex items-center">
-                            <input type="checkbox" />
+                            <input 
+                                type="checkbox" 
+                                value="3"
+                                name='byPrice'
+                                onchange="document.getElementById('filterForm').submit()" 
+                            />
                             <p class="ml-[10px]">$25 - $50</p>
                         </li>
                         <li class="flex items-center">
-                            <input type="checkbox" />
+                            <input 
+                                type="checkbox" 
+                                value="4"
+                                name='byPrice'
+                                onchange="document.getElementById('filterForm').submit()" 
+                                />
                             <p class="ml-[10px]">Over $50</p>
                         </li>
                     </ul>
                 </div><hr class="my-[10px]"/>
                 <div class="">
                     <p class="font-bold text-[18px]">Language</p>
-                    <ul class="ml-[20px]">
-                        <li class="flex items-center">
-                            <input type="checkbox" />
-                            <p class="ml-[10px]">Arabic</p>
-                        </li>
-                        <li class="flex items-center">
-                            <input type="checkbox" />
-                            <p class="ml-[10px]">English</p>
-                        </li>
-                        <li class="flex items-center">
-                            <input type="checkbox" />
-                            <p class="ml-[10px]">French</p>
-                        </li>
+                    <ul class="ml-[20px]" name="byLanguage">
+                        @foreach ($language as $i)
+                            <li class="flex items-center">
+                                <input 
+                                    type="checkbox" 
+                                    value="{{ $i->id }}"
+                                    name="byLanguage" 
+                                    onchange="document.getElementById('filterForm').submit()"
+                                />
+                                <p class="ml-[10px]">{{ $i->name }}</p>
+                            </li>
+                        @endforeach
                     </ul>
+                </form>
                 </div><hr/>
 
-                
-                
             </div>
             {{-- Right --}}
             <div class="w-[80%] flex flex-col items-center">

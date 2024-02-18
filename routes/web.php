@@ -21,6 +21,14 @@ use App\Http\Controllers\DashboardController;
 
 Route::get('/', [HomeController::class, 'index'])
 ->name('home_page');
+Route::get('/bag', [HomeController::class, 'bagIndex'])
+->name('bag_page');
+
+Route::get('/bag/{id}', [HomeController::class, 'bagDestroy'])
+->name('bag_page_delete');
+Route::delete('/bag/{id}', [HomeController::class, 'bagDestroy'])
+->name('bag_page_delete');
+
 Route::get('/books', [BooksController::class, 'index'])
 ->name('books_page');
 

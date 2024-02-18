@@ -1,7 +1,7 @@
 @extends('dashboard.user-dash')
 @section('user_dash')
     <div
-        class="w-[70%] h-[100%]" 
+        class="w-[70%] h-[100%] overflow-y-scroll" 
     >
         <ul class=" mb-[1%] text-gray-600 leading-5">
             <h1 class="text-[35px] text-blue-600">New Post</h1><br/>
@@ -90,10 +90,26 @@
                 </p>
             </label>
             <label class="w-[48%] h-[70px] flex flex-col justify-between my-[20px]">
+                <p>Format</p>
+                <select 
+                    name="format"
+                    class=" rounded-lg"
+                >
+                    <option value="1">Hardcover</option>
+                    <option value="2">Paperback</option>
+                    <option value="3">Logo book</option>
+                </select>
+                <p>
+                    @error('format')
+                        {{ $message }}
+                    @enderror
+                </p>
+            </label>
+            <label class="w-[48%] h-[200px] flex flex-col justify-between my-[20px]">
                 <p>Details</p>
                 <textarea
                     name="details"
-                    class=" rounded-lg"
+                    class=" rounded-lg h-[100%]"
                     placeholder="Ex: This book is about..."                    
                 ></textarea>
                 <p>
@@ -102,7 +118,7 @@
                     @enderror
                 </p>
             </label>
-            <label class="w-[48%] h-[41px] flex flex-col justify-between my-[20px] text-white font-bold">
+            <label class="w-[48%] h-[41px] mt-[45px] flex flex-col justify-between my-[20px] text-white font-bold">
                 <button
                     class="bg-blue-600 hover:bg-blue-500 h-[45px] rounded-lg shadow-md"
                 >

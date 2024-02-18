@@ -8,7 +8,6 @@ use App\Models\Categorie;
 use App\Models\Dashboard;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Hash;
 
 class DashboardController extends Controller
 {
@@ -40,6 +39,7 @@ class DashboardController extends Controller
         $price = $request->input('price');
         $details = $request->input('details');
         $language = $request->input('language_id');
+        $format = $request->input('format');
         $catigory = $request->input('catigory_id');
         $user_id = Auth::id();
         
@@ -49,6 +49,7 @@ class DashboardController extends Controller
             'price' => 'required',
             'details' => 'required|min:5',
             'language_id' => 'required',
+            'format' => 'required',
             'catigory_id' => 'required'
         ]);
         
@@ -59,6 +60,7 @@ class DashboardController extends Controller
             'details' => $details,
             'user_id' => $user_id,
             'language_id' => $language,
+            'format' => $format,
             'catigory_id' => $catigory
         ]);
 
@@ -83,9 +85,6 @@ class DashboardController extends Controller
         
         $catigory = Categorie::find(Dashboard::find($id)->catigory_id)->name;
         $languageSe = Language::find(Dashboard::find($id)->language_id)->name;
-        // dd($languageSe);
-
-        // dd(Categorie::find(Dashboard::find($id)->catigory_id)->name);
         return view('dashboard.edit-user-dash', compact('dashboard', 'catigory', 'languageSe'));
     }
 
@@ -101,6 +100,7 @@ class DashboardController extends Controller
             'price' => 'required',
             'details' => 'required|min:5',
             'language_id' => 'required',
+            'format' => 'required',
             'catigory_id' => 'required'
         ]);
 
@@ -116,6 +116,7 @@ class DashboardController extends Controller
         $dash->price = $request->input('price');
         $dash->details = $request->input('details');
         $dash->language_id = $request->input('language_id');
+        $dash->format = $request->input('format');
         $dash->catigory_id = $request->input('catigory_id');
         
         $dash->save();
