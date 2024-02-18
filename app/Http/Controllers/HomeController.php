@@ -74,12 +74,12 @@ class HomeController extends Controller
             return $item;
         });
 
-        // foreach ($bagShowWithDashboards as $i) {
-        //     dd($i->dashboard_id->price);
-        // }
-        // dd($bagShowWithDashboards);
+        $total=0;
+        foreach ($bagShowWithDashboards as $i) {
+            $total += ($i->dashboard_id->price * $i->value['quantity']);
+        }
 
-        return view('components.bag', compact('bag', 'bagShowWithDashboards'));
+        return view('components.bag', compact('bag', 'bagShowWithDashboards', 'total'));
     }
 
     public function bagDestroy($id) {

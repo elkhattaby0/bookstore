@@ -62,6 +62,9 @@ Route::name('signin_page')
 Route::get('/dashboard', [DashboardController::class, 'index'])
 ->middleware('auth')
 ->name('user-dash');
+Route::get('/dashboard', [DashboardController::class, 'dash'])
+->middleware('auth')
+->name('user-dash');
 
 Route::get('/dashboard/posts', [DashboardController::class, 'show'])
 ->middleware('auth')

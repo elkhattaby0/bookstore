@@ -18,7 +18,6 @@ class BooksController extends Controller
         $bag = DB::table('cache')->count();
         
         $dashboard = Dashboard::paginate(20);
-        $count = Dashboard::count();
         switch($request->category) {
             case '1':
                 $dashboard = Dashboard::orderByDesc('created_at')->paginate(20);
@@ -71,7 +70,7 @@ class BooksController extends Controller
             };
         
         
-        return view('components.book', compact('dashboard', 'count', 'categories', 'language', 'bag'));
+        return view('components.book', compact('dashboard', 'categories', 'language', 'bag'));
     }
 
 

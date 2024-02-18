@@ -19,9 +19,11 @@ class DashboardController extends Controller
         return view('dashboard.user-dash');
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
+    public function dash()
+    {
+        return view('dashboard.dash-user');
+    }
+
     public function create(Dashboard $dashboard)
     {
         $catigorie = Categorie::all();

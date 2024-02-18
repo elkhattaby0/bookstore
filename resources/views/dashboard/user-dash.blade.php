@@ -87,8 +87,10 @@
                 class=" h-[12%] bg-gray-100 flex justify-center rounded-2xl"
             >
                 <section class="w-[95%] flex justify-between items-center">
-                    <p>
-                        Profit: <b>$100.00</b>
+                    <p
+                        class="text-[22px]"
+                    >
+                        Dashboard
                     </p>
                     <span class="flex justify-between items-center w-[]">
                         <label class="flex flex-col text-[13px] leading-4">
