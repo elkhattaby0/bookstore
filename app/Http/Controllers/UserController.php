@@ -21,6 +21,7 @@ class UserController extends Controller
         $gender = $request->input('gender'); 
         $email = $request->input('email'); 
         $password = $request->input('password'); 
+        $image = "users/user.png";
         
         $request->validate([
             'fname' => 'required|min:1',
@@ -30,14 +31,25 @@ class UserController extends Controller
             'email' => 'required|email|unique:users',
             'password' => 'required|min:6|confirmed'
         ]);
-
+        // dd(
+        //     [
+        //         'fname' => $fname,
+        //         'lname' => $lname,
+        //         'dateBirth' => $dateBirth,
+        //         'gender' => $gender,
+        //         'email' => $email,
+        //         'password' => $password,
+        //         'image' => $image
+        //     ]
+        // );
         User::create([
             'fname' => $fname,
             'lname' => $lname,
             'dateBirth' => $dateBirth,
             'gender' => $gender,
             'email' => $email,
-            'password' => $password 
+            'password' => $password,
+            'image' => $image
         ]);
 
         return redirect()->route('signin_page')->with('message', "You've created your account successfully.");

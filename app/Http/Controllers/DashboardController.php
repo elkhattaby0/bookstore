@@ -19,11 +19,6 @@ class DashboardController extends Controller
         return view('dashboard.user-dash');
     }
 
-    public function dash()
-    {
-        return view('dashboard.dash-user');
-    }
-
     public function create(Dashboard $dashboard)
     {
         $catigorie = Categorie::all();
@@ -54,7 +49,7 @@ class DashboardController extends Controller
             'format' => 'required',
             'catigory_id' => 'required'
         ]);
-        
+        // dd($request);
         Dashboard::create([
             'image' => $image,
             'title' => $title,
@@ -66,7 +61,7 @@ class DashboardController extends Controller
             'catigory_id' => $catigory
         ]);
 
-        return to_route('show-user-dash');
+        return to_route('user-dash');
     }
 
     /**
@@ -74,8 +69,10 @@ class DashboardController extends Controller
      */
     public function show()
     {
+
         $books = Dashboard::where('user_id', Auth::id())->orderByDesc('created_at')->get();
-        return view('dashboard.show-user-dash', compact('books'));
+        $count = $books->count();
+        return view('dashboard.dash-user', compact('books', 'count'));
     }
 
     /**
@@ -123,7 +120,7 @@ class DashboardController extends Controller
         
         $dash->save();
         
-        return to_route('show-user-dash')->with('success', "Your post has been updated successfully");
+        return to_route('user-dash')->with('success', "Your post has been updated successfully");
     }
 
 
@@ -134,6 +131,6 @@ class DashboardController extends Controller
     {
         // dd($id);
         $id->delete();
-        return to_route('show-user-dash')->with('destroymsg', 'Deleted successfully');
+        return to_route('user-dash')->with('destroymsg', 'Deleted successfully');
     }
 }

@@ -138,7 +138,7 @@
                                 <option value="1">Best Matches</option>
                                 <option value="2">Price Low to High</option>
                                 <option value="3">Price High to Low</option>
-                                <option value="4">Newest Arriivals</option>
+                                <option value="4">Newest Arrivals</option>
                             </select>
                             <button type="submit">Filter</button>
                         </form>

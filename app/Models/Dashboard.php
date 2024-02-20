@@ -17,6 +17,7 @@ class Dashboard extends Model
         'title',
         'price',
         'details',
+        'format',
         'language_id',
         'catigory_id',
         'user_id'

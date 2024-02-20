@@ -87,9 +87,9 @@
         </form>
         <section class="w-[80%] mt-[80px]">
             <h1 class="font-bold text-[40px]">Overview</h1><br/>
-            <p>
+            <article>
                 {{$i->details}}
-            </p>
+            </article>
         </section>
     </div>
     <x-footer />
